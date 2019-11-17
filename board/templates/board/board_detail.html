@@ -33,6 +33,9 @@
      <div class="col-md-8 col-md-offset-2">
         {% disqus_show_comments %}
      </div>
-     <div class="col-md-8 col-md-offset-2"><a href="{% url 'board:delete' object.id %}" class="btn btn-info">삭제</a></div>
+     <div class="col-md-8 col-md-offset-2">
+         <a href="{% url 'board:delete' object.id %}" class="btn btn-info">삭제</a>
+         <a href="{% url 'board:update' object.id %}" class="btn btn-info">수정</a>
+     </div>
  </div>
 {% endblock %}

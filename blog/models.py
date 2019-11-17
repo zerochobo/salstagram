@@ -14,10 +14,7 @@ class Blog(models.Model):
     updated_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return "text : " + self.text
-
-    class Meta:
-        ordering = ['-created_date', ]  # 생성 날짜를 이용해 최신 글이 위에 올 수 있도록 역순 ordering 정렬 사용.
+        return self.text
 
     def delete(self, *args, **kwargs):  # delete 인스턴스 메서드 호출 / 모델을 삭제하는 기능 호출 시 파일 삭제 기능 수행
         self.image.delete()
@@ -27,3 +24,5 @@ class Blog(models.Model):
     def get_absolute_url(self):
         return reverse('blog:detail', args=[self.id])
 
+    class Meta:
+        ordering = ['-created_date', ]  # 생성 날짜를 이용해 최신 글이 위에 올 수 있도록 역순 ordering 정렬 사용.

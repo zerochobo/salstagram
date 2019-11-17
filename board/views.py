@@ -43,12 +43,14 @@ class BoardDetail(DetailView):
 
 class BoardUpdate(UpdateView):
     model = Board
+    fields = ['title', 'text']
     template_name_suffix = '_update'
+    success_url = "/board"
 
-    def update(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         if request.method == "POST":
             if request.POST["key"] != request.POST["key2"]:
                 messages.warning(request, "비밀번호를 틀리셨습니다.")
                 return HttpResponseRedirect('/board')
             else:
-                return super(BoardUpdate, self).update(request, *args, **kwargs)
+                return super(BoardUpdate, self).post(request, *args, **kwargs)
