@@ -1,0 +1,52 @@
+{% extends 'base_blog.html' %}
+{% block title %}
+{% endblock %}
+{% block content %}
+ <div class="container">
+    <div class="row">
+       <div class="col-md-8 col-md-offset-2">
+          <div class="col-md-offset-3"><h3>중부 신문고 게시판에 어서오세요!</h3><br></div>
+          <table class="table table-hover table-responsive">
+             <thead>
+             <th>번호</th><th>제목</th><th>작성자</th>
+             </thead>
+             <tbody>
+             {% for object in object_list %}
+             <tr onclick="">
+                <td>{{ object.pk }}</td><td><a href="{% url 'board:detail' object.id %}" style="color:black; text-decoration:none;">{{ object.title }}</a></td><td>{{ object.author }}</td>
+             </tr>
+             {% endfor %}
+             </tbody>
+          </table>
+
+          {% if is_paginated %}
+          <div class="col-md-offset-4">
+             <ul class="pagination">
+                {% if page_obj.has_previous %}
+                <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                {% else %}
+                <li class="disabled"><span>&laquo;</span></li>
+                {% endif %}
+                {% for i in paginator.page_range %}
+                {% if page_obj.number == i %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
+                {% endif %}
+             </ul>
+          </div>
+         {% endif %}
+          <div class="col-md-offset-4">
+          <a href="{% url 'board:create' %}" class="btn btn-info">New Posts</a>
+          </div>
+       </div>
+    </div>
+ </div>
+{% endblock %}
+

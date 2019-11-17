@@ -1,0 +1,45 @@
+{% extends 'base_blog.html' %}
+{% block title %}
+{% endblock %}
+
+{% block content %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+
+                        <div class="fh5co-grid animate-box" style="background-image : url('{{ object.image.url }}')">
+                            <a class="image-popup text-center" href="#">
+                                <div class="work-title">
+                                    <h3>{{ object.text }}</h3>
+                                    <span>생성일 : {{ object.created_date }}</span><br>
+                                    <span>갱신일 : {{ object.updated_date }}</span><br>
+                                    <span>작성자 : {{ object.author }}</span>
+                                </div>
+                            </a>
+
+                            <div class="fh5co-grid animate-box" style="position:absolute; right:5px; bottom:0px;">
+							    {% if user == object.author %}
+								<a href="{% url 'blog:update' object.id %}" class="card-link", style="color:black; ; text-decoration:none;"><b>수정</b></a>
+								<a href="{% url 'blog:delete' object.id %}" class="card-link", style="color:black; ; text-decoration:none;"><b>삭제</b></a>
+                                {% endif %}
+                            </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6 col-md-offset-3">
+
+                        <div class="fh5co-grid animate-box" >
+                            <div class="row">
+                                {% load disqus_tags %}
+							    <div class="work-title">
+                                    {% disqus_show_comments %}
+                                </div>
+                            </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base_blog.html' %}
+{% block content %}
+ <div class="row ">
+     <div class="col"></div>
+     <div class="col-md-offset-3 col-12 col-xl-8 col-md-8">
+        <div class="alert alert-primary" role="alert">
+        이 글을 삭제합니다. 확실합니까?
+        </div>
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Delete OK">
+        </form>
+     </div>
+ </div>
+{% endblock %}
