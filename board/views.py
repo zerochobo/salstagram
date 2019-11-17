@@ -12,7 +12,7 @@ from django.contrib import messages
 class BoardList(ListView):
     model = Board
     template_name_suffix = '_list'
-    paginate_by = 4
+    paginate_by = 4  # 장고 내에서 페이징 해주는 변수. 여기선 게시물이 4가 넘으면 다음 페이지가 생성되도록 설정함.
 
 
 class BoardCreate(CreateView):
@@ -29,7 +29,7 @@ class BoardDelete(DeleteView):
 
     def delete(self, request, *args, **kwargs):
         if request.method == "POST":
-            if request.POST["key"] != request.POST["key2"]:
+            if request.POST["key"] != request.POST["key2"]:  # 게시글에 비밀번호 정해놓은 것과 입력한 것 비교
                 messages.warning(request, "삭제 비밀번호를 틀리셨습니다.")
                 return HttpResponseRedirect('/board')
             else:

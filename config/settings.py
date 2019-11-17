@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
     'accounts.apps.AccountsConfig',
-    'disqus',
+    'disqus', # disqus 기능을 위한 APP 추가
     'django.contrib.sites',
     'board.apps.BoardConfig',
 ]
@@ -122,9 +122,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # 사진이 이곳으로 저장되
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # 홈페이지에서 정적으로 요청하는 파일들은 static 디렉터리에서 확인
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'  # 로그인 할 시 리다이렉트 되는 주소
 
-DISQUS_WEBSITE_SHORTNAME = 'salstagram'
+DISQUS_WEBSITE_SHORTNAME = 'salstagram'  # 댓글 기능을 disqus로 구현하기 위한 세팅 설정
 SITE_ID = 1
+

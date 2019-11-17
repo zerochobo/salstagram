@@ -20,4 +20,4 @@ class Board(models.Model):
         ordering = ['-created', ]
 
     def get_absolute_url(self):
-        return reverse('blog:detail', args=[self.id])
+        return reverse('board:detail', args=[self.id])
