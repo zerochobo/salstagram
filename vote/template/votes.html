@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang = "ko">
+<head>
+  <meta charset="utf-8">
+  <title>VOTE</title>
+  <script type="text/javascript" >
+      window.onload =  setup();
+
+var pointA = 1;
+var pointB = 1;
+var totalVotes = pointA + pointB;
+
+function addleft(){
+    pointA += 1;
+    totalVotes += 1;
+    updatePoints();
+    console.log(pointA + ' '+ pointB);
+}
+function addright(){
+    pointB += 1;
+    totalVotes += 1;
+    updatePoints();
+    console.log(pointA + ' '+ pointB);
+}
+
+function updatePoints(){
+    var percentA = (pointA / totalVotes) * 100;
+    var percentB = (pointB / totalVotes) * 100;
+    var size = percentA + "% " + percentB + "%";
+
+    document.getElementById("size-one").innerHTML = Math.round(percentA) + '%';
+    document.getElementById("size-two").innerHTML = Math.round(percentB) + '%';
+    document.getElementById("voting-box").style.gridTemplateColumns=  percentA + "% " + percentB + "%";
+
+    document.getElementById("total-votes").innerHTML = "Total Votes Casted: " + totalVotes;
+    document.getElementById("total-left").innerHTML = "Option A: " + pointA;
+    document.getElementById("total-right").innerHTML = "Option B: " + pointB;
+    document.getElementById("host-name").innerHTML = "Hosted by: pragyakar";
+}
+
+function setup() {
+    pointA = 1;
+    pointB = 1;
+    totalVotes = pointA + pointB;
+
+    document.getElementById("option-one").innerHTML = "Option A";
+    document.getElementById("option-two").innerHTML = "Option B";
+
+    updatePoints();
+}
+  </script>
+</head>
+<body>
+  <style>
+.container {
+  height: 100px;
+  width: 300px;
+  background: rgb(236, 251, 255);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px -6px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.container>div {
+  text-align: center;
+}
+
+.container>div:hover {
+  cursor: pointer;
+}
+
+.left {
+  background: rgb(192, 102, 177);
+}
+
+.right {
+  background: rgb(97, 165, 255);
+}
+
+.text {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  user-select: none;
+}
+
+.option-title {
+  color: rgba(255, 255, 255, 1);
+}
+
+.option-size {
+  color: rgba(255, 255, 255, 1);
+  font-size: 20px;
+}
+  </style>
+  <center>
+  <h1 class="1">어떤 내용을 알겠습니다 </h1>
+  </center>
+  <div class ="container" id="voting-box">
+    <div class="left" onclick="addleft()">
+      <div class = "text">
+        <span class="option-size" id="size-one"></span>
+        <br>
+        <span class="option-title" id="option-one">찬성</span>  
+      </div>
+    </div>
+    <div class="right" onclick="addright()">
+      <div class="text">
+          <span class="option-size" id="size-two"></span>
+          <br>
+          <span class="option-title" id="option-two">반대</span> 
+        </div>
+      </div>
+    </div>
+</body>
+</html>
