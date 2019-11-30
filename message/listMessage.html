@@ -1,0 +1,18 @@
+{% for new in rlist %}
+
+        {% if not new.isRead %}보낸 이: {{ new.sender }}, 내용: 
+                {{ new.content }} 
+        {% endif %}
+    {% endfor %}
+
+    Read Messages: 
+
+    {% for new in rlist %}
+        {% if new.isRead %}보낸 이: {{ new.sender }}, 내용: {{ new.content }} 
+        {% endif %}
+    {% endfor %}
+
+    Send Messages: 
+
+    {% for send in slist %}받은 사람: {{ send.recipient }}, 내용: {{ send.content }}
+    {% endfor %}
